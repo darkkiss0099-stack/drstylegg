@@ -19,18 +19,13 @@ body{
   text-align:center;
 }
 
-/* ===== BACKGROUND CORE (NO LINE) ===== */
+/* ===== BACKGROUND CORE ===== */
 #bg{
   position:fixed;
   inset:0;
   background:
     radial-gradient(circle at center,#0000 45%,#000c 88%),
-    linear-gradient(
-      to top,
-      #3aa0ff22 0%,
-      #0b1c2a55 10%,
-      #000 35%
-    );
+    linear-gradient(to top,#3aa0ff22 0%,#0b1c2a55 10%,#000 35%);
   z-index:-4;
 }
 
@@ -62,7 +57,6 @@ body{
   animation:float 45s linear infinite;
   z-index:-2;
 }
-
 @keyframes float{
   from{background-position:0 0}
   to{background-position:0 -1200px}
@@ -72,20 +66,23 @@ body{
 .topbar{
   position:fixed;
   top:18px;left:18px;right:18px;
-  height:60px;
-  display:flex;
-  align-items:center;
-  padding:0 24px;
-  border-radius:18px;
-  background:rgba(0,0,0,.55);
-  backdrop-filter:blur(14px);
-  border:1px solid #ffffff12;
+  height:68px;
+  border-radius:22px;
+  background:linear-gradient(to right,
+    rgba(255,255,255,.08),
+    rgba(255,255,255,.02),
+    rgba(255,255,255,.08)
+  );
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.18);
   z-index:10;
 }
 .brand{
+  height:100%;
   display:flex;
-  gap:12px;
   align-items:center;
+  gap:12px;
+  padding-left:20px;
 }
 .badge{
   padding:6px 16px;
@@ -93,11 +90,12 @@ body{
   background:linear-gradient(135deg,#fff,#aaa);
   color:#000;
   font-size:12px;
+  font-weight:700;
 }
 #title{
   letter-spacing:2px;
-  opacity:.85;
   font-size:14px;
+  opacity:.85;
 }
 
 /* ===== MAIN ===== */
@@ -119,22 +117,20 @@ main{
   margin-bottom:20px;
 }
 
-/* ===== ANIMATED TITLE ===== */
+/* ===== MAIN TITLE (THICK & ANIMATED) ===== */
 h1{
-  font-size:76px;
+  font-size:78px;
   letter-spacing:10px;
-  background:linear-gradient(
-    120deg,
-    #ffffff,
-    #9fe3ff,
-    #ffffff
-  );
+  font-weight:900;
+  background:linear-gradient(120deg,#ffffff,#9fe3ff,#ffffff);
   background-size:200% auto;
   animation:titleFlow 6s ease-in-out infinite;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+  text-shadow:
+    0 0 1px rgba(255,255,255,.6),
+    0 0 12px rgba(120,200,255,.35);
 }
-
 @keyframes titleFlow{
   0%{background-position:0% 50%}
   50%{background-position:100% 50%}
@@ -149,7 +145,7 @@ h1{
   opacity:.6;
 }
 
-/* ===== BUTTONS ===== */
+/* ===== BUTTONS (THICK TEXT) ===== */
 .buttons{
   display:flex;
   justify-content:center;
@@ -159,17 +155,23 @@ h1{
   padding:22px 70px;
   border-radius:999px;
   font-size:15px;
+  font-weight:800;
   letter-spacing:3px;
   text-decoration:none;
   color:#fff;
   border:1px solid #ffffff40;
-  background:linear-gradient(180deg,#ffffff15,#00000060);
+  background:linear-gradient(180deg,#ffffff18,#00000070);
   backdrop-filter:blur(12px);
+  text-shadow:
+    0.5px 0 #fff,
+    -0.5px 0 #fff,
+    0 0 6px rgba(120,200,255,.35);
   transition:.35s;
 }
 .buttons a:hover{
   background:#fff;
   color:#000;
+  text-shadow:none;
   transform:translateY(-3px);
 }
 
@@ -203,18 +205,12 @@ footer{
   <div class="sub">Listname Dernreang</div>
 
   <div class="buttons">
-    <a href="https://gang.fivemlist.info/dernreangstyle" target="_blank">
-      DERNREANG
-    </a>
-    <a href="https://gang.fivemlist.info/testedboy" target="_blank">
-      TESTE'D
-    </a>
+    <a href="https://gang.fivemlist.info/dernreangstyle" target="_blank">DERNREANG</a>
+    <a href="https://gang.fivemlist.info/testedboy" target="_blank">TESTE'D</a>
   </div>
 </main>
 
 <footer>© 2026 DERNREANG. Created by Drake Dernreang.</footer>
-<div id="bg"></div>
-<div id="overlay"></div>
 
 </body>
 </html>
