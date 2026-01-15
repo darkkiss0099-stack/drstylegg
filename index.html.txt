@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>DERNREANG 2K26</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ===== FONT ===== */
+@font-face{
+  font-family:"WinnerSans";
+  src:url("WinnerSansExtended-Bold.woff2") format("woff2");
+  font-weight:700;
+}
+@font-face{
+  font-family:"Cocogoose";
+  src:url("Cocogoose-Pro-Bold-trial.ttf") format("truetype");
+  font-weight:700;
+}
+
+/* ===== RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+html,body{height:100%}
+
+/* ===== BODY ===== */
+body{
+  background:#000;
+  color:#fff;
+  text-align:center;
+  overflow:hidden;
+  font-family:"WinnerSans", Arial, sans-serif;
+}
+
+/* ===== BACKGROUND ===== */
+#bg{
+  position:fixed;
+  inset:0;
+  background:url("BG.png") center/cover no-repeat;
+  filter:brightness(.6) contrast(1.1);
+  z-index:-3;
+  pointer-events:none;
+}
+#overlay{
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at center,#0000 30%,#000c 75%),
+    linear-gradient(to bottom,#0008,#000e);
+  z-index:-2;
+  pointer-events:none;
+}
+
+/* ===== TOP BAR ===== */
+.topbar{
+  position:fixed;
+  top:18px;left:18px;right:18px;
+  height:60px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  padding:0 24px;
+  border-radius:18px;
+  background:rgba(0,0,0,.55);
+  backdrop-filter:blur(14px);
+  border:1px solid #ffffff12;
+  box-shadow:0 0 30px #000;
+  z-index:100;
+}
+.brand{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  font-family:"Cocogoose", sans-serif;
+}
+.badge{
+  padding:6px 16px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#fff,#aaa);
+  color:#000;
+  font-size:12px;
+  cursor:pointer;
+}
+#title{
+  letter-spacing:2px;
+  opacity:.85;
+  font-size:14px;
+}
+
+/* ===== MAIN ===== */
+main{
+  margin-top:160px;
+  position:relative;
+  z-index:10;
+}
+
+/* ===== HOUSE BADGE ===== */
+.house-badge{
+  display:inline-flex;
+  padding:6px 18px;
+  border-radius:999px;
+  border:1px solid #ffffff30;
+  background:#000a;
+  font-size:11px;
+  letter-spacing:2px;
+  margin-bottom:20px;
+  cursor:pointer;
+}
+
+/* ===== TITLE ===== */
+h1{
+  font-size:78px;
+  letter-spacing:10px;
+  font-weight:700;
+  font-family:"WinnerSans", sans-serif;
+  background:linear-gradient(90deg,#8f5bff,#ff6bd5);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* ===== SUB ===== */
+.sub{
+  margin:18px 0 60px;
+  letter-spacing:3px;
+  font-size:13px;
+  opacity:.65;
+}
+
+/* ===== BUTTONS ===== */
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+}
+.buttons a{
+  padding:22px 70px;
+  border-radius:999px;
+  font-size:15px;
+  letter-spacing:3px;
+  text-decoration:none;
+  color:#fff;
+  border:1px solid #ffffff40;
+  background:linear-gradient(180deg,#ffffff15,#00000060);
+  backdrop-filter:blur(12px);
+  box-shadow:0 0 35px #000;
+  transition:.35s;
+  font-family:"WinnerSans", sans-serif;
+}
+.buttons a:hover{
+  background:#fff;
+  color:#000;
+  box-shadow:0 0 60px #fff;
+  transform:translateY(-3px);
+}
+
+/* ===== FOOTER ===== */
+footer{
+  position:fixed;
+  bottom:18px;
+  width:100%;
+  font-size:11px;
+  opacity:.35;
+  z-index:10;
+}
+</style>
+</head>
+
+<body>
+
+<div id="bg"></div>
+<div id="overlay"></div>
+
+<div class="topbar">
+  <div class="brand">
+    <div class="badge"
+      onclick="location.href='https://gang.fivemlist.info/dernreangstyle'">
+      HOUSE OF DEK
+    </div>
+    <span id="title">DERNREANG 2K26</span>
+  </div>
+</div>
+
+<main>
+  <div class="house-badge"
+    onclick="location.href='https://discord.gg/Skvdxg6hwZ'">
+    HOUSE OF FRIENDSHIP
+  </div>
+
+  <h1>HOUSE DERNREANG</h1>
+
+  <div class="sub">Listname Dernreang</div>
+
+  <div class="buttons">
+    <a href="https://gang.fivemlist.info/dernreangstyle" target="_blank">
+      DERNREANG
+    </a>
+    <a href="https://gang.fivemlist.info/testedboy" target="_blank">
+      TESTE'D
+    </a>
+  </div>
+</main>
+
+<footer>© 2026 DERNREANG. Created by Drake Dernreang.</footer>
+<div id="bg"></div>
+<div id="overlay"></div>
+
+</body>
+</html>
