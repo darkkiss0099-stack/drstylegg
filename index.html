@@ -54,20 +54,13 @@ body{
   opacity:.75;
   z-index:-4;
 }
-.snow{
-  position:fixed;inset:0;
+
+/* ===== SNOW CANVAS ===== */
+#snowCanvas{
+  position:fixed;
+  inset:0;
   pointer-events:none;
-  background-image:
-    radial-gradient(#fff 1px, transparent 1px),
-    radial-gradient(#cfefff 1px, transparent 1px);
-  background-size:120px 120px,200px 200px;
-  animation:snow 30s linear infinite;
-  opacity:.4;
   z-index:-3;
-}
-@keyframes snow{
-  from{background-position:0 0,0 0}
-  to{background-position:0 1500px,0 2000px}
 }
 
 /* ===== TOP BAR ===== */
@@ -99,7 +92,7 @@ body{
 #title{font-size:14px;opacity:.8}
 
 /* ===== MAIN ===== */
-main{margin-top:180px;z-index:5;position:relative}
+main{margin-top:180px;position:relative;z-index:5}
 
 .house-badge{
   display:inline-flex;
@@ -161,57 +154,57 @@ main{margin-top:180px;z-index:5;position:relative}
   transform:translateY(-3px);
 }
 
+/* ===== CONTACT BADGE ===== */
+.contact{
+  position:fixed;
+  left:20px;
+  bottom:20px;
+  padding:14px 34px;
+  border-radius:999px;
+  font-weight:900;
+  letter-spacing:3px;
+  text-decoration:none;
+  background:linear-gradient(90deg,#6fe3ff,#7b7cff,#b26bff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  border:1px solid #ffffff40;
+  backdrop-filter:blur(12px);
+  z-index:20;
+}
+
 /* ===== MUSIC PLAYER ===== */
 .player{
   position:fixed;
   right:20px;
   bottom:20px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:14px 22px;
+  padding:14px 34px;
   border-radius:999px;
-  background:linear-gradient(180deg,#ffffff18,#000000aa);
+  font-weight:900;
+  letter-spacing:3px;
+  cursor:pointer;
+  background:linear-gradient(90deg,#6fe3ff,#7b7cff,#b26bff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
   border:1px solid #ffffff40;
   backdrop-filter:blur(12px);
   z-index:20;
-}
-.player button{
-  background:none;
-  border:none;
-  color:#fff;
-  font-size:14px;
-  letter-spacing:2px;
-  cursor:pointer;
-}
-
-/* ===== FOOTER ===== */
-footer{
-  position:fixed;
-  bottom:18px;
-  width:100%;
-  font-size:11px;
-  opacity:.35;
-}
-
-@media(max-width:900px){
-  .title-main{font-size:72px}
-  .title-sub{font-size:82px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- ===== AUDIO ===== -->
-<audio id="bgm" autoplay muted loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
+<!-- ===== YOUTUBE AUDIO (AUTOPLAY MUTED) ===== -->
+<iframe id="yt"
+src="https://www.youtube.com/embed/f1r0XZLNlGQ?autoplay=1&mute=1&loop=1&playlist=f1r0XZLNlGQ&controls=0"
+allow="autoplay"
+style="display:none"></iframe>
+
+<canvas id="snowCanvas"></canvas>
 
 <div id="bg"></div>
 <div id="blueGlow"></div>
 <div id="grid"></div>
-<div class="snow"></div>
 
 <div class="topbar">
   <div class="brand">
@@ -232,26 +225,57 @@ footer{
   </div>
 </main>
 
-<div class="player">
-  <button id="toggle">▶ PLAY MUSIC</button>
-</div>
+<a class="contact" href="https://www.facebook.com/ssssssz168" target="_blank">CONTACT</a>
+
+<div class="player" onclick="unmute()">▶ PLAY MUSIC</div>
 
 <footer>© 2026 DERNREANG. Created by Drake Dernreang.</footer>
 
 <script>
-const audio = document.getElementById('bgm');
-const btn = document.getElementById('toggle');
+/* ===== UNMUTE YOUTUBE ===== */
+function unmute(){
+  const iframe = document.getElementById('yt');
+  iframe.src = iframe.src.replace('mute=1','mute=0');
+}
 
-btn.onclick = () => {
-  if(audio.paused){
-    audio.muted = false;
-    audio.play();
-    btn.textContent = '⏸ PAUSE';
-  }else{
-    audio.pause();
-    btn.textContent = '▶ PLAY MUSIC';
-  }
-};
+/* ===== CANVAS SNOW ===== */
+const canvas = document.getElementById('snowCanvas');
+const ctx = canvas.getContext('2d');
+let w,h;
+function resize(){
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+window.onresize = resize;
+resize();
+
+const snow = Array.from({length:160},()=>({
+  x:Math.random()*w,
+  y:Math.random()*h,
+  r:Math.random()*2+1,
+  s:Math.random()*1+0.5,
+  d:Math.random()*1
+}));
+
+function draw(){
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle='rgba(255,255,255,.8)';
+  ctx.beginPath();
+  snow.forEach(p=>{
+    ctx.moveTo(p.x,p.y);
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+  });
+  ctx.fill();
+  update();
+}
+function update(){
+  snow.forEach(p=>{
+    p.y += p.s;
+    p.x += Math.sin(p.d);
+    if(p.y>h){p.y=0;p.x=Math.random()*w}
+  });
+}
+setInterval(draw,33);
 </script>
 
 </body>
