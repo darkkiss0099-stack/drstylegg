@@ -84,7 +84,7 @@ body{
 .badge{
   padding:6px 16px;
   border-radius:999px;
-  background:linear-gradient(135deg,#e6f6ff,#9bdcff);
+  background:#fff;
   color:#000;
   font-size:12px;
   font-weight:700;
@@ -115,24 +115,17 @@ main{margin-top:180px;z-index:5;position:relative}
   box-shadow:0 0 12px #6fe3ff;
 }
 
-/* ===== TITLES + GRADIENT TEXT ===== */
-.gradient-text{
+/* ===== TITLES ===== */
+.title-main{
+  font-size:108px;
+  letter-spacing:10px;
   font-weight:900;
-  text-transform:uppercase;
-  background:linear-gradient(90deg,#6fe3ff,#7b7cff,#b26bff);
-  background-size:300% auto;
-  animation:flow 8s linear infinite;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  text-shadow:0 0 25px #6bd6ff55;
 }
-
-.title-main{font-size:108px;letter-spacing:10px}
-.title-sub{font-size:120px;letter-spacing:14px;margin-top:6px}
-
-@keyframes flow{
-  0%{background-position:0%}
-  100%{background-position:300%}
+.title-sub{
+  font-size:120px;
+  letter-spacing:14px;
+  margin-top:6px;
+  font-weight:900;
 }
 
 .sub{
@@ -157,18 +150,12 @@ main{margin-top:180px;z-index:5;position:relative}
   background:linear-gradient(180deg,#ffffff18,#00000070);
   backdrop-filter:blur(12px);
   transition:.35s;
-}
-.buttons a span{
+  color:#fff;
   font-weight:900;
-  background:linear-gradient(90deg,#6fe3ff,#7b7cff,#b26bff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
 }
 .buttons a:hover{
   background:#fff;
-}
-.buttons a:hover span{
-  -webkit-text-fill-color:#000;
+  color:#000;
 }
 
 /* ===== CONTACT ===== */
@@ -183,10 +170,12 @@ main{margin-top:180px;z-index:5;position:relative}
   text-decoration:none;
   border:1px solid #ffffff40;
   backdrop-filter:blur(12px);
-  background:linear-gradient(90deg,#6fe3ff,#7b7cff,#b26bff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+  color:#fff;
   z-index:20;
+}
+.contact:hover{
+  background:#fff;
+  color:#000;
 }
 
 /* ===== MUSIC ===== */
@@ -200,7 +189,13 @@ main{margin-top:180px;z-index:5;position:relative}
   cursor:pointer;
   border:1px solid #ffffff40;
   backdrop-filter:blur(12px);
+  color:#fff;
+  font-weight:900;
   z-index:20;
+}
+.player:hover{
+  background:#fff;
+  color:#000;
 }
 
 /* ===== FOOTER ===== */
@@ -238,28 +233,23 @@ style="display:none"></iframe>
 <main>
   <div class="house-badge">SINCE 2K26</div>
 
-  <div class="gradient-text title-main">HOUSE OF</div>
-  <div class="gradient-text title-sub">DERNREANG</div>
+  <div class="title-main">HOUSE OF</div>
+  <div class="title-sub">DERNREANG</div>
 
   <div class="sub">Listname Dernreang</div>
 
   <div class="buttons">
-    <a href="https://gang.fivemlist.info/dernreangstyle" target="_blank">
-      <span>DERNREANG</span>
-    </a>
-    <a href="https://gang.fivemlist.info/testedboy" target="_blank">
-      <span>TESTE'D</span>
-    </a>
+    <a href="https://gang.fivemlist.info/dernreangstyle" target="_blank">DERNREANG</a>
+    <a href="https://gang.fivemlist.info/testedboy" target="_blank">TESTE'D</a>
   </div>
 </main>
 
 <a class="contact" href="https://www.facebook.com/ssssssz168" target="_blank">CONTACT</a>
-<div class="player gradient-text" id="musicBtn">▶ PLAY MUSIC</div>
+<div class="player" id="musicBtn">▶ PLAY MUSIC</div>
 
 <footer>© 2026 DERNREANG. Created by Drake Dernreang.</footer>
 
 <script>
-/* ===== MUSIC TOGGLE ===== */
 let playing = false;
 const yt = document.getElementById('yt');
 const btn = document.getElementById('musicBtn');
@@ -286,7 +276,7 @@ function resize(){
 }
 window.onresize = resize; resize();
 
-const snow = Array.from({length:160},()=>({
+const snow = Array.from({length:160},()=>( {
   x:Math.random()*w,
   y:Math.random()*h,
   r:Math.random()*2+1,
