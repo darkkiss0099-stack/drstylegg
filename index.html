@@ -107,13 +107,6 @@ main{margin-top:180px;z-index:5;position:relative}
   letter-spacing:3px;
   margin-bottom:36px;
 }
-.house-badge::before{
-  content:"";
-  width:8px;height:8px;
-  border-radius:50%;
-  background:#6fe3ff;
-  box-shadow:0 0 12px #6fe3ff;
-}
 
 /* ===== TITLES ===== */
 .title-main{
@@ -135,7 +128,7 @@ main{margin-top:180px;z-index:5;position:relative}
   opacity:.6;
 }
 
-/* ===== BUTTONS ===== */
+/* ===== BUTTONS (WHITE FONT) ===== */
 .buttons{
   display:flex;
   justify-content:center;
@@ -212,9 +205,9 @@ footer{
 
 <body>
 
-<!-- ===== YOUTUBE AUDIO ===== -->
+<!-- ===== YOUTUBE AUDIO (AUTO PLAY) ===== -->
 <iframe id="yt"
-src="https://www.youtube.com/embed/bTfU8zFLj74?autoplay=1&mute=1&loop=1&playlist=bTfU8zFLj74&controls=0"
+src="https://www.youtube.com/embed/bTfU8zFLj74?autoplay=1&mute=0&loop=1&playlist=bTfU8zFLj74&controls=0"
 allow="autoplay"
 style="display:none"></iframe>
 
@@ -245,24 +238,25 @@ style="display:none"></iframe>
 </main>
 
 <a class="contact" href="https://www.facebook.com/ssssssz168" target="_blank">CONTACT</a>
-<div class="player" id="musicBtn">▶ PLAY MUSIC</div>
+<div class="player" id="musicBtn">⏸ PAUSE MUSIC</div>
 
 <footer>© 2026 DERNREANG. Created by Drake Dernreang.</footer>
 
 <script>
-let playing = false;
+/* ===== MUSIC TOGGLE ===== */
+let playing = true;
 const yt = document.getElementById('yt');
 const btn = document.getElementById('musicBtn');
 
 btn.onclick = ()=>{
-  if(!playing){
-    yt.src = yt.src.replace('mute=1','mute=0');
-    btn.textContent = '⏸ PAUSE MUSIC';
-    playing = true;
-  }else{
+  if(playing){
     yt.src = yt.src.replace('mute=0','mute=1');
     btn.textContent = '▶ PLAY MUSIC';
     playing = false;
+  }else{
+    yt.src = yt.src.replace('mute=1','mute=0');
+    btn.textContent = '⏸ PAUSE MUSIC';
+    playing = true;
   }
 };
 
