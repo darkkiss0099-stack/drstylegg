@@ -114,43 +114,56 @@ main{
   background:#000a;
   font-size:11px;
   letter-spacing:2px;
-  margin-bottom:30px;
+  margin-bottom:36px;
 }
 
-/* ===== MAIN TITLES ===== */
-.title-main{
-  font-size:92px; /* HOUSE OF ใหญ่ */
-  letter-spacing:14px;
+/* ===== TITLE STYLE (WINTERFELL / AWAKE) ===== */
+.title-main,
+.title-sub{
   font-weight:900;
-  background:linear-gradient(120deg,#ffffff,#9fe3ff,#ffffff);
-  background-size:200% auto;
-  animation:titleFlow 6s ease-in-out infinite;
+  text-transform:uppercase;
+  background:linear-gradient(
+    90deg,
+    #4cc3ff,
+    #6b8cff,
+    #8a6bff,
+    #a855f7
+  );
+  background-size:300% auto;
+  animation:gradientFlow 7s linear infinite;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  text-shadow:
-    0 0 1px rgba(255,255,255,.6),
-    0 0 14px rgba(120,200,255,.4);
 }
 
+/* HOUSE OF */
+.title-main{
+  font-size:110px;
+  letter-spacing:10px;
+  line-height:1;
+  text-shadow:
+    0 0 25px rgba(120,180,255,.45),
+    0 0 45px rgba(160,120,255,.25);
+}
+
+/* DERNREANG */
 .title-sub{
-  margin-top:8px;
-  font-size:76px; /* เล็กกว่า HOUSE OF นิดนึง */
+  margin-top:6px;
+  font-size:110px;
   letter-spacing:12px;
-  font-weight:800;
-  opacity:.9;
+  line-height:1;
   text-shadow:
-    0 0 10px rgba(120,200,255,.35);
+    0 0 30px rgba(120,180,255,.5),
+    0 0 55px rgba(160,120,255,.3);
 }
 
-@keyframes titleFlow{
+@keyframes gradientFlow{
   0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+  100%{background-position:300% 50%}
 }
 
 /* ===== SUB ===== */
 .sub{
-  margin:22px 0 70px;
+  margin:26px 0 70px;
   letter-spacing:3px;
   font-size:13px;
   opacity:.6;
@@ -163,9 +176,9 @@ main{
   gap:42px;
 }
 .buttons a{
-  padding:23px 74px; /* +5% */
+  padding:23px 74px;
   border-radius:999px;
-  font-size:16px; /* +5% */
+  font-size:16px;
   font-weight:800;
   letter-spacing:3px;
   text-decoration:none;
@@ -193,6 +206,15 @@ footer{
   width:100%;
   font-size:11px;
   opacity:.35;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .title-main,
+  .title-sub{
+    font-size:72px;
+    letter-spacing:6px;
+  }
 }
 </style>
 </head>
