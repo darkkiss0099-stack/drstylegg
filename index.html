@@ -5,10 +5,9 @@
 <title>DERNREANG 2K26</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- GOOGLE FONT -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -17,28 +16,58 @@ html,body{height:100%}
 body{
   background:#000;
   color:#fff;
-  font-family:'Orbitron',sans-serif;
+  font-family:'Orbitron', Arial, Helvetica, sans-serif;
   overflow:hidden;
   text-align:center;
 }
 
-/* ===== BG ===== */
+/* ===== BACKGROUND ===== */
 #bg{
   position:fixed;
   inset:0;
   background:
-    radial-gradient(circle,#0000 45%,#000c 88%),
+    radial-gradient(circle at center,#0000 45%,#000c 88%),
     linear-gradient(to top,#3aa0ff20 0%,#0b1c2a55 10%,#000 35%);
-  z-index:-5;
+  z-index:-6;
 }
 #blueGlow{
   position:fixed;
   bottom:-22%;
   left:0;right:0;
   height:32%;
-  background:radial-gradient(circle,#5fd3ff44 0%,transparent 70%);
+  background:radial-gradient(circle at center,#5fd3ff44 0%,transparent 70%);
   filter:blur(38px);
+  z-index:-5;
+}
+#grid{
+  position:fixed;
+  left:-50%;right:-50%;
+  bottom:-22%;
+  height:70%;
+  background:
+    linear-gradient(#ffffff10 1px, transparent 1px),
+    linear-gradient(90deg,#ffffff10 1px, transparent 1px);
+  background-size:60px 60px;
+  transform:perspective(800px) rotateX(70deg);
+  transform-origin:bottom center;
+  mask-image:linear-gradient(to top,transparent 0%,black 45%);
+  opacity:.75;
   z-index:-4;
+}
+.snow{
+  position:fixed;inset:0;
+  pointer-events:none;
+  background-image:
+    radial-gradient(#fff 1px, transparent 1px),
+    radial-gradient(#cfefff 1px, transparent 1px);
+  background-size:120px 120px,200px 200px;
+  animation:snow 30s linear infinite;
+  opacity:.4;
+  z-index:-3;
+}
+@keyframes snow{
+  from{background-position:0 0,0 0}
+  to{background-position:0 1500px,0 2000px}
 }
 
 /* ===== TOP BAR ===== */
@@ -47,19 +76,17 @@ body{
   top:18px;left:18px;right:18px;
   height:68px;
   border-radius:22px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:0 20px;
-  background:rgba(255,255,255,.06);
+  background:linear-gradient(to right,#ffffff14,#ffffff05,#ffffff14);
   backdrop-filter:blur(18px);
-  border:1px solid rgba(255,255,255,.18);
+  border:1px solid #ffffff25;
   z-index:10;
 }
 .brand{
+  height:100%;
   display:flex;
   align-items:center;
   gap:12px;
+  padding-left:20px;
 }
 .badge{
   padding:6px 16px;
@@ -67,74 +94,51 @@ body{
   background:linear-gradient(135deg,#e6f6ff,#9bdcff);
   color:#000;
   font-size:12px;
-  font-weight:900;
+  font-weight:700;
 }
-#title{
-  font-size:14px;
-  font-weight:900;
-  transform:scaleX(1.05);
-}
-
-/* CONTACT */
-.contact a{
-  padding:8px 20px;
-  border-radius:999px;
-  border:1px solid #ffffff40;
-  color:#fff;
-  text-decoration:none;
-  font-size:12px;
-  letter-spacing:2px;
-  transition:.3s;
-}
-.contact a:hover{
-  background:#fff;
-  color:#000;
-}
+#title{font-size:14px;opacity:.8}
 
 /* ===== MAIN ===== */
 main{margin-top:180px;z-index:5;position:relative}
 
 .house-badge{
-  display:inline-block;
-  padding:6px 20px;
+  display:inline-flex;
+  padding:6px 18px;
   border-radius:999px;
   border:1px solid #ffffff30;
+  background:#000a;
   font-size:11px;
-  letter-spacing:3px;
+  letter-spacing:2px;
   margin-bottom:36px;
-  font-weight:900;
-  transform:scaleX(1.05);
 }
 
-/* TITLES */
+/* ===== TITLES ===== */
 .title-main,.title-sub{
   font-weight:900;
-  transform:scaleX(1.05);
   text-transform:uppercase;
   background:linear-gradient(90deg,#6fe3ff,#7b7cff,#b26bff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
   background-size:300% auto;
   animation:flow 8s linear infinite;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 25px #6bd6ff55;
 }
 .title-main{font-size:108px;letter-spacing:10px}
 .title-sub{font-size:120px;letter-spacing:14px;margin-top:6px}
 
 @keyframes flow{
-  0%{background-position:0% 50%}
-  100%{background-position:300% 50%}
+  0%{background-position:0%}
+  100%{background-position:300%}
 }
 
 .sub{
   margin:26px 0 70px;
   font-size:13px;
   letter-spacing:3px;
-  font-weight:900;
-  transform:scaleX(1.05);
   opacity:.6;
 }
 
-/* BUTTONS */
+/* ===== BUTTONS ===== */
 .buttons{
   display:flex;
   justify-content:center;
@@ -143,118 +147,111 @@ main{margin-top:180px;z-index:5;position:relative}
 .buttons a{
   padding:23px 74px;
   border-radius:999px;
-  font-size:16px;
   letter-spacing:3px;
-  font-weight:900;
-  transform:scaleX(1.05);
-  color:#fff;
   text-decoration:none;
+  color:#fff;
   border:1px solid #ffffff40;
   background:linear-gradient(180deg,#ffffff18,#00000070);
+  backdrop-filter:blur(12px);
   transition:.35s;
 }
 .buttons a:hover{
   background:#fff;
   color:#000;
+  transform:translateY(-3px);
 }
 
 /* ===== MUSIC PLAYER ===== */
 .player{
   position:fixed;
-  bottom:26px;
-  left:50%;
-  transform:translateX(-50%);
+  right:20px;
+  bottom:20px;
   display:flex;
   align-items:center;
-  gap:18px;
-  padding:14px 26px;
+  gap:12px;
+  padding:14px 22px;
   border-radius:999px;
-  background:rgba(0,0,0,.55);
-  border:1px solid rgba(255,255,255,.25);
+  background:linear-gradient(180deg,#ffffff18,#000000aa);
+  border:1px solid #ffffff40;
   backdrop-filter:blur(12px);
   z-index:20;
 }
 .player button{
   background:none;
   border:none;
-  color:#6fd9ff;
-  font-size:22px;
+  color:#fff;
+  font-size:14px;
+  letter-spacing:2px;
   cursor:pointer;
 }
 
-/* HIDDEN YT */
-#yt{
-  width:1px;
-  height:1px;
-  position:fixed;
-  opacity:0;
-  pointer-events:none;
-}
-
-/* FOOTER */
+/* ===== FOOTER ===== */
 footer{
   position:fixed;
-  bottom:8px;
+  bottom:18px;
   width:100%;
   font-size:11px;
   opacity:.35;
+}
+
+@media(max-width:900px){
+  .title-main{font-size:72px}
+  .title-sub{font-size:82px}
 }
 </style>
 </head>
 
 <body>
 
+<!-- ===== AUDIO ===== -->
+<audio id="bgm" autoplay muted loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <div id="bg"></div>
 <div id="blueGlow"></div>
-
-<!-- YOUTUBE -->
-<iframe
-  id="yt"
-  src="https://www.youtube.com/embed/f1r0XZLNlGQ?enablejsapi=1&loop=1&playlist=f1r0XZLNlGQ"
-  frameborder="0"
-  allow="autoplay">
-</iframe>
+<div id="grid"></div>
+<div class="snow"></div>
 
 <div class="topbar">
   <div class="brand">
     <div class="badge">HOUSE OF</div>
     <span id="title">DERNREANG 2K26</span>
   </div>
-  <div class="contact">
-    <a href="https://www.facebook.com/ssssssz168" target="_blank">CONTACT</a>
-  </div>
 </div>
 
 <main>
   <div class="house-badge">DRSTYLE</div>
-
   <div class="title-main">HOUSE OF</div>
   <div class="title-sub">DERNREANG</div>
-
   <div class="sub">Listname Dernreang</div>
 
   <div class="buttons">
-    <a href="#">DERNREANG</a>
-    <a href="#">TESTE'D</a>
+    <a href="https://gang.fivemlist.info/dernreangstyle" target="_blank">DERNREANG</a>
+    <a href="https://gang.fivemlist.info/testedboy" target="_blank">TESTE'D</a>
   </div>
 </main>
 
 <div class="player">
-  <button onclick="play()">▶</button>
-  <button onclick="pause()">⏸</button>
+  <button id="toggle">▶ PLAY MUSIC</button>
 </div>
 
-<footer>© 2026 DERNREANG</footer>
+<footer>© 2026 DERNREANG. Created by Drake Dernreang.</footer>
 
 <script>
-let yt = document.getElementById('yt').contentWindow;
+const audio = document.getElementById('bgm');
+const btn = document.getElementById('toggle');
 
-function play(){
-  yt.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-}
-function pause(){
-  yt.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-}
+btn.onclick = () => {
+  if(audio.paused){
+    audio.muted = false;
+    audio.play();
+    btn.textContent = '⏸ PAUSE';
+  }else{
+    audio.pause();
+    btn.textContent = '▶ PLAY MUSIC';
+  }
+};
 </script>
 
 </body>
