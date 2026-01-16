@@ -94,18 +94,29 @@ body{
 /* ===== MAIN ===== */
 main{margin-top:180px;z-index:5;position:relative}
 
+/* ===== SINCE BADGE ===== */
 .house-badge{
   display:inline-flex;
-  padding:6px 18px;
+  align-items:center;
+  gap:10px;
+  padding:10px 26px;
   border-radius:999px;
+  background:linear-gradient(180deg,#ffffff18,#00000080);
   border:1px solid #ffffff30;
-  background:#000a;
   font-size:11px;
-  letter-spacing:2px;
+  letter-spacing:3px;
   margin-bottom:36px;
 }
+.house-badge::before{
+  content:"";
+  width:8px;height:8px;
+  border-radius:50%;
+  background:#6fe3ff;
+  box-shadow:0 0 12px #6fe3ff;
+}
 
-.title-main,.title-sub,.player{
+/* ===== TITLES + GRADIENT TEXT ===== */
+.gradient-text{
   font-weight:900;
   text-transform:uppercase;
   background:linear-gradient(90deg,#6fe3ff,#7b7cff,#b26bff);
@@ -142,16 +153,22 @@ main{margin-top:180px;z-index:5;position:relative}
   border-radius:999px;
   letter-spacing:3px;
   text-decoration:none;
-  color:#fff;
   border:1px solid #ffffff40;
   background:linear-gradient(180deg,#ffffff18,#00000070);
   backdrop-filter:blur(12px);
   transition:.35s;
 }
+.buttons a span{
+  font-weight:900;
+  background:linear-gradient(90deg,#6fe3ff,#7b7cff,#b26bff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
 .buttons a:hover{
   background:#fff;
-  color:#000;
-  transform:translateY(-3px);
+}
+.buttons a:hover span{
+  -webkit-text-fill-color:#000;
 }
 
 /* ===== CONTACT ===== */
@@ -202,7 +219,7 @@ footer{
 
 <!-- ===== YOUTUBE AUDIO ===== -->
 <iframe id="yt"
-src="https://www.youtube.com/embed/f1r0XZLNlGQ?autoplay=1&mute=1&loop=1&playlist=f1r0XZLNlGQ&controls=0"
+src="https://www.youtube.com/embed/bTfU8zFLj74?autoplay=1&mute=1&loop=1&playlist=bTfU8zFLj74&controls=0"
 allow="autoplay"
 style="display:none"></iframe>
 
@@ -219,19 +236,25 @@ style="display:none"></iframe>
 </div>
 
 <main>
-  <div class="house-badge">DRSTYLE</div>
-  <div class="title-main">HOUSE OF</div>
-  <div class="title-sub">DERNREANG</div>
+  <div class="house-badge">SINCE 2K26</div>
+
+  <div class="gradient-text title-main">HOUSE OF</div>
+  <div class="gradient-text title-sub">DERNREANG</div>
+
   <div class="sub">Listname Dernreang</div>
 
   <div class="buttons">
-    <a href="https://gang.fivemlist.info/dernreangstyle" target="_blank">DERNREANG</a>
-    <a href="https://gang.fivemlist.info/testedboy" target="_blank">TESTE'D</a>
+    <a href="https://gang.fivemlist.info/dernreangstyle" target="_blank">
+      <span>DERNREANG</span>
+    </a>
+    <a href="https://gang.fivemlist.info/testedboy" target="_blank">
+      <span>TESTE'D</span>
+    </a>
   </div>
 </main>
 
 <a class="contact" href="https://www.facebook.com/ssssssz168" target="_blank">CONTACT</a>
-<div class="player" id="musicBtn">▶ PLAY MUSIC</div>
+<div class="player gradient-text" id="musicBtn">▶ PLAY MUSIC</div>
 
 <footer>© 2026 DERNREANG. Created by Drake Dernreang.</footer>
 
