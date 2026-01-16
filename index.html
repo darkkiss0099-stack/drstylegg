@@ -6,6 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+/* ===== LOAD FONT (DAFONT) ===== */
+@font-face{
+  font-family:'Heinan';
+  src:
+    url('fonts/Heinan.woff2') format('woff2'),
+    url('fonts/Heinan.woff') format('woff');
+  font-weight:normal;
+  font-style:normal;
+}
+
 /* ===== RESET ===== */
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}
@@ -14,7 +24,7 @@ html,body{height:100%}
 body{
   background:#000;
   color:#fff;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family:'Heinan', Arial, Helvetica, sans-serif; /* <<< ใช้ทั้งเว็บ */
   overflow:hidden;
   text-align:center;
 }
@@ -90,7 +100,6 @@ body{
   background:linear-gradient(135deg,#fff,#aaa);
   color:#000;
   font-size:12px;
-  font-weight:700;
 }
 #title{
   letter-spacing:2px;
@@ -117,10 +126,9 @@ main{
   margin-bottom:36px;
 }
 
-/* ===== TITLE STYLE (WINTERFELL / AWAKE) ===== */
+/* ===== TITLE STYLE ===== */
 .title-main,
 .title-sub{
-  font-weight:900;
   text-transform:uppercase;
   background:linear-gradient(
     90deg,
@@ -138,7 +146,7 @@ main{
 /* HOUSE OF */
 .title-main{
   font-size:110px;
-  letter-spacing:10px;
+  letter-spacing:8px;
   line-height:1;
   text-shadow:
     0 0 25px rgba(120,180,255,.45),
@@ -149,7 +157,7 @@ main{
 .title-sub{
   margin-top:6px;
   font-size:110px;
-  letter-spacing:12px;
+  letter-spacing:10px;
   line-height:1;
   text-shadow:
     0 0 30px rgba(120,180,255,.5),
@@ -169,7 +177,7 @@ main{
   opacity:.6;
 }
 
-/* ===== BUTTONS (+5%) ===== */
+/* ===== BUTTONS ===== */
 .buttons{
   display:flex;
   justify-content:center;
@@ -179,17 +187,13 @@ main{
   padding:23px 74px;
   border-radius:999px;
   font-size:16px;
-  font-weight:800;
   letter-spacing:3px;
   text-decoration:none;
   color:#fff;
   border:1px solid #ffffff40;
   background:linear-gradient(180deg,#ffffff18,#00000070);
   backdrop-filter:blur(12px);
-  text-shadow:
-    0.5px 0 #fff,
-    -0.5px 0 #fff,
-    0 0 6px rgba(120,200,255,.35);
+  text-shadow:0 0 6px rgba(120,200,255,.35);
   transition:.35s;
 }
 .buttons a:hover{
