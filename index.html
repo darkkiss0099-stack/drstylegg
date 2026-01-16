@@ -12,8 +12,6 @@
   src:
     url('fonts/Heinan.woff2') format('woff2'),
     url('fonts/Heinan.woff') format('woff');
-  font-weight:normal;
-  font-style:normal;
 }
 
 /* ===== RESET ===== */
@@ -24,7 +22,7 @@ html,body{height:100%}
 body{
   background:#000;
   color:#fff;
-  font-family:'Heinan', Arial, Helvetica, sans-serif; /* <<< ใช้ทั้งเว็บ */
+  font-family:'Heinan', Arial, Helvetica, sans-serif;
   overflow:hidden;
   text-align:center;
 }
@@ -35,8 +33,20 @@ body{
   inset:0;
   background:
     radial-gradient(circle at center,#0000 45%,#000c 88%),
-    linear-gradient(to top,#3aa0ff22 0%,#0b1c2a55 10%,#000 35%);
-  z-index:-4;
+    linear-gradient(to top,#3aa0ff25 0%,#0b1c2a55 10%,#000 35%);
+  z-index:-6;
+}
+
+/* ===== EXTRA BLUE GLOW (+3%) ===== */
+#blueGlow{
+  position:fixed;
+  bottom:-12%;
+  left:0;
+  right:0;
+  height:45%;
+  background:radial-gradient(circle at center,#5fd3ff55 0%,transparent 70%);
+  filter:blur(45px);
+  z-index:-5;
 }
 
 /* ===== GRID FLOOR ===== */
@@ -52,18 +62,37 @@ body{
   background-size:60px 60px;
   transform:perspective(800px) rotateX(70deg);
   transform-origin:bottom center;
-  z-index:-3;
   mask-image:linear-gradient(to top,transparent 0%,black 45%);
-  opacity:.7;
+  opacity:.75;
+  z-index:-4;
 }
 
-/* ===== PARTICLES ===== */
+/* ===== SNOW EFFECT ===== */
+.snow{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    radial-gradient(#ffffff 1px, transparent 1px),
+    radial-gradient(#cfefff 1px, transparent 1px),
+    radial-gradient(#ffffffaa 1px, transparent 1px);
+  background-size:120px 120px,180px 180px,260px 260px;
+  animation:snowFall 32s linear infinite;
+  opacity:.6;
+  z-index:-3;
+}
+@keyframes snowFall{
+  from{background-position:0 0,0 0,0 0}
+  to{background-position:0 1400px,0 1800px,0 2200px}
+}
+
+/* ===== PARTICLES (เดิม) ===== */
 #particles{
   position:fixed;
   inset:0;
   background:radial-gradient(#6bd6ff 1px, transparent 1px);
   background-size:140px 140px;
-  opacity:.12;
+  opacity:.1;
   animation:float 45s linear infinite;
   z-index:-2;
 }
@@ -97,7 +126,7 @@ body{
 .badge{
   padding:6px 16px;
   border-radius:999px;
-  background:linear-gradient(135deg,#fff,#aaa);
+  background:linear-gradient(135deg,#e6f6ff,#9bdcff);
   color:#000;
   font-size:12px;
 }
@@ -126,21 +155,23 @@ main{
   margin-bottom:36px;
 }
 
-/* ===== TITLE STYLE ===== */
+/* ===== TITLE STYLE (WINTERFELL / AWAKE) ===== */
 .title-main,
 .title-sub{
   text-transform:uppercase;
   background:linear-gradient(
     90deg,
-    #4cc3ff,
-    #6b8cff,
-    #8a6bff,
-    #a855f7
+    #6fe3ff,
+    #7b7cff,
+    #b26bff
   );
   background-size:300% auto;
-  animation:gradientFlow 7s linear infinite;
+  animation:gradientFlow 8s linear infinite;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+  text-shadow:
+    0 0 20px rgba(120,200,255,.6),
+    0 0 45px rgba(160,120,255,.35);
 }
 
 /* HOUSE OF */
@@ -148,20 +179,14 @@ main{
   font-size:110px;
   letter-spacing:8px;
   line-height:1;
-  text-shadow:
-    0 0 25px rgba(120,180,255,.45),
-    0 0 45px rgba(160,120,255,.25);
 }
 
 /* DERNREANG */
 .title-sub{
   margin-top:6px;
-  font-size:110px;
-  letter-spacing:10px;
+  font-size:120px;
+  letter-spacing:12px;
   line-height:1;
-  text-shadow:
-    0 0 30px rgba(120,180,255,.5),
-    0 0 55px rgba(160,120,255,.3);
 }
 
 @keyframes gradientFlow{
@@ -193,7 +218,7 @@ main{
   border:1px solid #ffffff40;
   background:linear-gradient(180deg,#ffffff18,#00000070);
   backdrop-filter:blur(12px);
-  text-shadow:0 0 6px rgba(120,200,255,.35);
+  text-shadow:0 0 8px rgba(120,200,255,.4);
   transition:.35s;
 }
 .buttons a:hover{
@@ -214,11 +239,8 @@ footer{
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:900px){
-  .title-main,
-  .title-sub{
-    font-size:72px;
-    letter-spacing:6px;
-  }
+  .title-main{font-size:72px}
+  .title-sub{font-size:82px}
 }
 </style>
 </head>
@@ -226,7 +248,9 @@ footer{
 <body>
 
 <div id="bg"></div>
+<div id="blueGlow"></div>
 <div id="grid"></div>
+<div class="snow"></div>
 <div id="particles"></div>
 
 <div class="topbar">
