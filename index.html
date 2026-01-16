@@ -100,7 +100,7 @@ body{
 
 /* ===== MAIN ===== */
 main{
-  margin-top:160px;
+  margin-top:180px;
   position:relative;
   z-index:5;
 }
@@ -114,13 +114,13 @@ main{
   background:#000a;
   font-size:11px;
   letter-spacing:2px;
-  margin-bottom:20px;
+  margin-bottom:30px;
 }
 
-/* ===== MAIN TITLE (THICK & ANIMATED) ===== */
-h1{
-  font-size:78px;
-  letter-spacing:10px;
+/* ===== MAIN TITLES ===== */
+.title-main{
+  font-size:92px; /* HOUSE OF ใหญ่ */
+  letter-spacing:14px;
   font-weight:900;
   background:linear-gradient(120deg,#ffffff,#9fe3ff,#ffffff);
   background-size:200% auto;
@@ -129,8 +129,19 @@ h1{
   -webkit-text-fill-color:transparent;
   text-shadow:
     0 0 1px rgba(255,255,255,.6),
-    0 0 12px rgba(120,200,255,.35);
+    0 0 14px rgba(120,200,255,.4);
 }
+
+.title-sub{
+  margin-top:8px;
+  font-size:76px; /* เล็กกว่า HOUSE OF นิดนึง */
+  letter-spacing:12px;
+  font-weight:800;
+  opacity:.9;
+  text-shadow:
+    0 0 10px rgba(120,200,255,.35);
+}
+
 @keyframes titleFlow{
   0%{background-position:0% 50%}
   50%{background-position:100% 50%}
@@ -139,22 +150,22 @@ h1{
 
 /* ===== SUB ===== */
 .sub{
-  margin:18px 0 60px;
+  margin:22px 0 70px;
   letter-spacing:3px;
   font-size:13px;
   opacity:.6;
 }
 
-/* ===== BUTTONS (THICK TEXT) ===== */
+/* ===== BUTTONS (+5%) ===== */
 .buttons{
   display:flex;
   justify-content:center;
-  gap:40px;
+  gap:42px;
 }
 .buttons a{
-  padding:22px 70px;
+  padding:23px 74px; /* +5% */
   border-radius:999px;
-  font-size:15px;
+  font-size:16px; /* +5% */
   font-weight:800;
   letter-spacing:3px;
   text-decoration:none;
@@ -201,7 +212,10 @@ footer{
 
 <main>
   <div class="house-badge">HOUSE OF FRIENDSHIP</div>
-  <h1>HOUSE DERNREANG</h1>
+
+  <div class="title-main">HOUSE OF</div>
+  <div class="title-sub">DERNREANG</div>
+
   <div class="sub">Listname Dernreang</div>
 
   <div class="buttons">
