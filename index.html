@@ -94,31 +94,62 @@ body{
 /* ===== MAIN ===== */
 main{margin-top:180px;z-index:5;position:relative}
 
-/* ===== SINCE BADGE ===== */
+/* ===== SINCE BADGE (AWAKE STYLE) ===== */
 .house-badge{
   display:inline-flex;
   align-items:center;
-  gap:10px;
-  padding:10px 26px;
+  gap:14px;
+  padding:12px 30px;
   border-radius:999px;
-  background:linear-gradient(180deg,#ffffff18,#00000080);
-  border:1px solid #ffffff30;
-  font-size:11px;
-  letter-spacing:3px;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.25);
+  font-size:12px;
+  letter-spacing:4px;
   margin-bottom:36px;
+  color:#fff;
+}
+.house-badge::before{
+  content:"";
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#4fe8ff;
+  box-shadow:0 0 12px #4fe8ff,0 0 22px #4fe8ff;
 }
 
-/* ===== TITLES ===== */
+/* ===== WAVE GRADIENT TEXT ===== */
+.wave-text{
+  font-weight:900;
+  text-transform:uppercase;
+  background:linear-gradient(
+    120deg,
+    #5fd3ff,
+    #7b7cff,
+    #b26bff,
+    #5fd3ff
+  );
+  background-size:300% 300%;
+  animation:wave 6s ease-in-out infinite;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 25px rgba(120,180,255,.45);
+}
+
+@keyframes wave{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
 .title-main{
   font-size:108px;
   letter-spacing:10px;
-  font-weight:900;
 }
 .title-sub{
   font-size:120px;
   letter-spacing:14px;
   margin-top:6px;
-  font-weight:900;
 }
 
 .sub{
@@ -128,7 +159,7 @@ main{margin-top:180px;z-index:5;position:relative}
   opacity:.6;
 }
 
-/* ===== BUTTONS (WHITE FONT) ===== */
+/* ===== BUTTONS ===== */
 .buttons{
   display:flex;
   justify-content:center;
@@ -166,10 +197,7 @@ main{margin-top:180px;z-index:5;position:relative}
   color:#fff;
   z-index:20;
 }
-.contact:hover{
-  background:#fff;
-  color:#000;
-}
+.contact:hover{background:#fff;color:#000}
 
 /* ===== MUSIC ===== */
 .player{
@@ -186,10 +214,7 @@ main{margin-top:180px;z-index:5;position:relative}
   font-weight:900;
   z-index:20;
 }
-.player:hover{
-  background:#fff;
-  color:#000;
-}
+.player:hover{background:#fff;color:#000}
 
 /* ===== FOOTER ===== */
 footer{
@@ -205,7 +230,7 @@ footer{
 
 <body>
 
-<!-- ===== YOUTUBE AUDIO (AUTO PLAY) ===== -->
+<!-- ===== YOUTUBE AUDIO ===== -->
 <iframe id="yt"
 src="https://www.youtube.com/embed/bTfU8zFLj74?autoplay=1&mute=0&loop=1&playlist=bTfU8zFLj74&controls=0"
 allow="autoplay"
@@ -226,8 +251,8 @@ style="display:none"></iframe>
 <main>
   <div class="house-badge">SINCE 2K26</div>
 
-  <div class="title-main">HOUSE OF</div>
-  <div class="title-sub">DERNREANG</div>
+  <div class="wave-text title-main">HOUSE OF</div>
+  <div class="wave-text title-sub">DERNREANG</div>
 
   <div class="sub">Listname Dernreang</div>
 
@@ -243,7 +268,6 @@ style="display:none"></iframe>
 <footer>© 2026 DERNREANG. Created by Drake Dernreang.</footer>
 
 <script>
-/* ===== MUSIC TOGGLE ===== */
 let playing = true;
 const yt = document.getElementById('yt');
 const btn = document.getElementById('musicBtn');
@@ -264,18 +288,12 @@ btn.onclick = ()=>{
 const canvas = document.getElementById('snowCanvas');
 const ctx = canvas.getContext('2d');
 let w,h;
-function resize(){
-  w = canvas.width = innerWidth;
-  h = canvas.height = innerHeight;
-}
-window.onresize = resize; resize();
+function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight}
+window.onresize=resize;resize();
 
-const snow = Array.from({length:160},()=>( {
-  x:Math.random()*w,
-  y:Math.random()*h,
-  r:Math.random()*2+1,
-  s:Math.random()*1+0.5,
-  d:Math.random()*1
+const snow=Array.from({length:160},()=>({
+  x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+1,
+  s:Math.random()*1+0.5,d:Math.random()*1
 }));
 
 setInterval(()=>{
@@ -285,7 +303,7 @@ setInterval(()=>{
   snow.forEach(p=>{
     ctx.moveTo(p.x,p.y);
     ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    p.y+=p.s; p.x+=Math.sin(p.d);
+    p.y+=p.s;p.x+=Math.sin(p.d);
     if(p.y>h){p.y=0;p.x=Math.random()*w}
   });
   ctx.fill();
