@@ -94,7 +94,7 @@ body{
 /* ===== MAIN ===== */
 main{margin-top:180px;z-index:5;position:relative}
 
-/* ===== SINCE BADGE (AWAKE STYLE) ===== */
+/* ===== SINCE BADGE ===== */
 .house-badge{
   display:inline-flex;
   align-items:center;
@@ -107,7 +107,6 @@ main{margin-top:180px;z-index:5;position:relative}
   font-size:12px;
   letter-spacing:4px;
   margin-bottom:36px;
-  color:#fff;
 }
 .house-badge::before{
   content:"";
@@ -118,39 +117,24 @@ main{margin-top:180px;z-index:5;position:relative}
   box-shadow:0 0 12px #4fe8ff,0 0 22px #4fe8ff;
 }
 
-/* ===== WAVE GRADIENT TEXT ===== */
+/* ===== WAVE TEXT ===== */
 .wave-text{
   font-weight:900;
-  text-transform:uppercase;
-  background:linear-gradient(
-    120deg,
-    #5fd3ff,
-    #7b7cff,
-    #b26bff,
-    #5fd3ff
-  );
+  background:linear-gradient(120deg,#5fd3ff,#7b7cff,#b26bff,#5fd3ff);
   background-size:300% 300%;
   animation:wave 6s ease-in-out infinite;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   text-shadow:0 0 25px rgba(120,180,255,.45);
 }
-
 @keyframes wave{
   0%{background-position:0% 50%}
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
 }
 
-.title-main{
-  font-size:108px;
-  letter-spacing:10px;
-}
-.title-sub{
-  font-size:120px;
-  letter-spacing:14px;
-  margin-top:6px;
-}
+.title-main{font-size:108px;letter-spacing:10px}
+.title-sub{font-size:120px;letter-spacing:14px;margin-top:6px}
 
 .sub{
   margin:26px 0 70px;
@@ -173,66 +157,45 @@ main{margin-top:180px;z-index:5;position:relative}
   border:1px solid #ffffff40;
   background:linear-gradient(180deg,#ffffff18,#00000070);
   backdrop-filter:blur(12px);
+  color:#fff;
+  font-weight:900;
   transition:.35s;
-  color:#fff;
-  font-weight:900;
 }
-.buttons a:hover{
-  background:#fff;
-  color:#000;
-}
+.buttons a:hover{background:#fff;color:#000}
 
-/* ===== CONTACT ===== */
-.contact{
+/* ===== CONTACT / MUSIC ===== */
+.contact,.player{
   position:fixed;
-  left:20px;
   bottom:20px;
   padding:14px 34px;
   border-radius:999px;
   font-weight:900;
   letter-spacing:3px;
-  text-decoration:none;
   border:1px solid #ffffff40;
   backdrop-filter:blur(12px);
   color:#fff;
-  z-index:20;
-}
-.contact:hover{background:#fff;color:#000}
-
-/* ===== MUSIC ===== */
-.player{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  padding:14px 34px;
-  border-radius:999px;
-  letter-spacing:3px;
   cursor:pointer;
-  border:1px solid #ffffff40;
-  backdrop-filter:blur(12px);
-  color:#fff;
-  font-weight:900;
   z-index:20;
 }
-.player:hover{background:#fff;color:#000}
+.contact{left:20px;text-decoration:none}
+.player{right:20px}
+.contact:hover,.player:hover{background:#fff;color:#000}
 
-/* ===== FOOTER ===== */
 footer{
   position:fixed;
   bottom:6px;
   width:100%;
   font-size:10px;
   opacity:.35;
-  letter-spacing:1px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ===== YOUTUBE AUDIO ===== -->
+<!-- ===== YOUTUBE (START MUTED) ===== -->
 <iframe id="yt"
-src="https://www.youtube.com/embed/bTfU8zFLj74?autoplay=1&mute=0&loop=1&playlist=bTfU8zFLj74&controls=0"
+src="https://www.youtube.com/embed/bTfU8zFLj74?enablejsapi=1&mute=1&loop=1&playlist=bTfU8zFLj74&controls=0"
 allow="autoplay"
 style="display:none"></iframe>
 
@@ -250,10 +213,8 @@ style="display:none"></iframe>
 
 <main>
   <div class="house-badge">SINCE 2K26</div>
-
   <div class="wave-text title-main">HOUSE OF</div>
   <div class="wave-text title-sub">DERNREANG</div>
-
   <div class="sub">Listname Dernreang</div>
 
   <div class="buttons">
@@ -263,48 +224,52 @@ style="display:none"></iframe>
 </main>
 
 <a class="contact" href="https://www.facebook.com/ssssssz168" target="_blank">CONTACT</a>
-<div class="player" id="musicBtn">⏸ PAUSE MUSIC</div>
+<div class="player" id="musicBtn">▶ PLAY MUSIC</div>
 
 <footer>© 2026 DERNREANG. Created by Alex Dernreang.</footer>
 
 <script>
-let playing = true;
-const yt = document.getElementById('yt');
-const btn = document.getElementById('musicBtn');
+/* ===== MUSIC FIX (NETLIFY OK) ===== */
+const yt=document.getElementById("yt");
+const btn=document.getElementById("musicBtn");
+let playing=false;
 
-btn.onclick = ()=>{
-  if(playing){
-    yt.src = yt.src.replace('mute=0','mute=1');
-    btn.textContent = '▶ PLAY MUSIC';
-    playing = false;
+btn.onclick=()=>{
+  if(!playing){
+    yt.src += "&autoplay=1";
+    yt.src = yt.src.replace("mute=1","mute=0");
+    btn.textContent="⏸ PAUSE MUSIC";
+    playing=true;
   }else{
-    yt.src = yt.src.replace('mute=1','mute=0');
-    btn.textContent = '⏸ PAUSE MUSIC';
-    playing = true;
+    yt.src = yt.src.replace("mute=0","mute=1");
+    btn.textContent="▶ PLAY MUSIC";
+    playing=false;
   }
 };
 
 /* ===== SNOW ===== */
-const canvas = document.getElementById('snowCanvas');
-const ctx = canvas.getContext('2d');
-let w,h;
-function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight}
+const canvas=document.getElementById("snowCanvas");
+const ctx=canvas.getContext("2d");
+function resize(){canvas.width=innerWidth;canvas.height=innerHeight}
 window.onresize=resize;resize();
 
-const snow=Array.from({length:160},()=>({
-  x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+1,
-  s:Math.random()*1+0.5,d:Math.random()*1
+const snow=[...Array(160)].map(()=>({
+  x:Math.random()*canvas.width,
+  y:Math.random()*canvas.height,
+  r:Math.random()*2+1,
+  s:Math.random()*1+0.5,
+  d:Math.random()*1
 }));
 
 setInterval(()=>{
-  ctx.clearRect(0,0,w,h);
-  ctx.fillStyle='rgba(255,255,255,.8)';
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="rgba(255,255,255,.8)";
   ctx.beginPath();
   snow.forEach(p=>{
     ctx.moveTo(p.x,p.y);
     ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
     p.y+=p.s;p.x+=Math.sin(p.d);
-    if(p.y>h){p.y=0;p.x=Math.random()*w}
+    if(p.y>canvas.height){p.y=0;p.x=Math.random()*canvas.width}
   });
   ctx.fill();
 },33);
