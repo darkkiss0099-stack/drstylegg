@@ -55,7 +55,7 @@ body{
   z-index:-4;
 }
 
-/* ===== SNOW CANVAS ===== */
+/* ===== SNOW ===== */
 #snowCanvas{
   position:fixed;
   inset:0;
@@ -92,7 +92,7 @@ body{
 #title{font-size:14px;opacity:.8}
 
 /* ===== MAIN ===== */
-main{margin-top:180px;position:relative;z-index:5}
+main{margin-top:180px;z-index:5;position:relative}
 
 .house-badge{
   display:inline-flex;
@@ -105,8 +105,7 @@ main{margin-top:180px;position:relative;z-index:5}
   margin-bottom:36px;
 }
 
-/* ===== TITLES ===== */
-.title-main,.title-sub{
+.title-main,.title-sub,.player{
   font-weight:900;
   text-transform:uppercase;
   background:linear-gradient(90deg,#6fe3ff,#7b7cff,#b26bff);
@@ -116,6 +115,7 @@ main{margin-top:180px;position:relative;z-index:5}
   -webkit-text-fill-color:transparent;
   text-shadow:0 0 25px #6bd6ff55;
 }
+
 .title-main{font-size:108px;letter-spacing:10px}
 .title-sub{font-size:120px;letter-spacing:14px;margin-top:6px}
 
@@ -154,7 +154,7 @@ main{margin-top:180px;position:relative;z-index:5}
   transform:translateY(-3px);
 }
 
-/* ===== CONTACT BADGE ===== */
+/* ===== CONTACT ===== */
 .contact{
   position:fixed;
   left:20px;
@@ -164,44 +164,49 @@ main{margin-top:180px;position:relative;z-index:5}
   font-weight:900;
   letter-spacing:3px;
   text-decoration:none;
+  border:1px solid #ffffff40;
+  backdrop-filter:blur(12px);
   background:linear-gradient(90deg,#6fe3ff,#7b7cff,#b26bff);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  border:1px solid #ffffff40;
-  backdrop-filter:blur(12px);
   z-index:20;
 }
 
-/* ===== MUSIC PLAYER ===== */
+/* ===== MUSIC ===== */
 .player{
   position:fixed;
   right:20px;
   bottom:20px;
   padding:14px 34px;
   border-radius:999px;
-  font-weight:900;
   letter-spacing:3px;
   cursor:pointer;
-  background:linear-gradient(90deg,#6fe3ff,#7b7cff,#b26bff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
   border:1px solid #ffffff40;
   backdrop-filter:blur(12px);
   z-index:20;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  position:fixed;
+  bottom:6px;
+  width:100%;
+  font-size:10px;
+  opacity:.35;
+  letter-spacing:1px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ===== YOUTUBE AUDIO (AUTOPLAY MUTED) ===== -->
+<!-- ===== YOUTUBE AUDIO ===== -->
 <iframe id="yt"
 src="https://www.youtube.com/embed/f1r0XZLNlGQ?autoplay=1&mute=1&loop=1&playlist=f1r0XZLNlGQ&controls=0"
 allow="autoplay"
 style="display:none"></iframe>
 
 <canvas id="snowCanvas"></canvas>
-
 <div id="bg"></div>
 <div id="blueGlow"></div>
 <div id="grid"></div>
@@ -226,28 +231,37 @@ style="display:none"></iframe>
 </main>
 
 <a class="contact" href="https://www.facebook.com/ssssssz168" target="_blank">CONTACT</a>
-
-<div class="player" onclick="unmute()">▶ PLAY MUSIC</div>
+<div class="player" id="musicBtn">▶ PLAY MUSIC</div>
 
 <footer>© 2026 DERNREANG. Created by Drake Dernreang.</footer>
 
 <script>
-/* ===== UNMUTE YOUTUBE ===== */
-function unmute(){
-  const iframe = document.getElementById('yt');
-  iframe.src = iframe.src.replace('mute=1','mute=0');
-}
+/* ===== MUSIC TOGGLE ===== */
+let playing = false;
+const yt = document.getElementById('yt');
+const btn = document.getElementById('musicBtn');
 
-/* ===== CANVAS SNOW ===== */
+btn.onclick = ()=>{
+  if(!playing){
+    yt.src = yt.src.replace('mute=1','mute=0');
+    btn.textContent = '⏸ PAUSE MUSIC';
+    playing = true;
+  }else{
+    yt.src = yt.src.replace('mute=0','mute=1');
+    btn.textContent = '▶ PLAY MUSIC';
+    playing = false;
+  }
+};
+
+/* ===== SNOW ===== */
 const canvas = document.getElementById('snowCanvas');
 const ctx = canvas.getContext('2d');
 let w,h;
 function resize(){
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
+  w = canvas.width = innerWidth;
+  h = canvas.height = innerHeight;
 }
-window.onresize = resize;
-resize();
+window.onresize = resize; resize();
 
 const snow = Array.from({length:160},()=>({
   x:Math.random()*w,
@@ -257,25 +271,18 @@ const snow = Array.from({length:160},()=>({
   d:Math.random()*1
 }));
 
-function draw(){
+setInterval(()=>{
   ctx.clearRect(0,0,w,h);
   ctx.fillStyle='rgba(255,255,255,.8)';
   ctx.beginPath();
   snow.forEach(p=>{
     ctx.moveTo(p.x,p.y);
     ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-  });
-  ctx.fill();
-  update();
-}
-function update(){
-  snow.forEach(p=>{
-    p.y += p.s;
-    p.x += Math.sin(p.d);
+    p.y+=p.s; p.x+=Math.sin(p.d);
     if(p.y>h){p.y=0;p.x=Math.random()*w}
   });
-}
-setInterval(draw,33);
+  ctx.fill();
+},33);
 </script>
 
 </body>
