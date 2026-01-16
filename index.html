@@ -5,15 +5,12 @@
 <title>DERNREANG 2K26</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-/* ===== LOAD FONT (DAFONT) ===== */
-@font-face{
-  font-family:'Heinan';
-  src:
-    url('fonts/Heinan.woff2') format('woff2'),
-    url('fonts/Heinan.woff') format('woff');
-}
+<!-- ===== GOOGLE FONT (WINTERFELL / AWAKE STYLE) ===== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&display=swap" rel="stylesheet">
 
+<style>
 /* ===== RESET ===== */
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}
@@ -22,7 +19,7 @@ html,body{height:100%}
 body{
   background:#000;
   color:#fff;
-  font-family:'Heinan', Arial, Helvetica, sans-serif;
+  font-family:'Orbitron', Arial, Helvetica, sans-serif;
   overflow:hidden;
   text-align:center;
 }
@@ -33,19 +30,19 @@ body{
   inset:0;
   background:
     radial-gradient(circle at center,#0000 45%,#000c 88%),
-    linear-gradient(to top,#3aa0ff25 0%,#0b1c2a55 10%,#000 35%);
+    linear-gradient(to top,#3aa0ff20 0%,#0b1c2a55 10%,#000 35%);
   z-index:-6;
 }
 
-/* ===== EXTRA BLUE GLOW (+3%) ===== */
+/* ===== BLUE GLOW (LOWER & SOFTER) ===== */
 #blueGlow{
   position:fixed;
-  bottom:-12%;
+  bottom:-22%;
   left:0;
   right:0;
-  height:45%;
-  background:radial-gradient(circle at center,#5fd3ff55 0%,transparent 70%);
-  filter:blur(45px);
+  height:32%;
+  background:radial-gradient(circle at center,#5fd3ff44 0%,transparent 70%);
+  filter:blur(38px);
   z-index:-5;
 }
 
@@ -78,7 +75,7 @@ body{
     radial-gradient(#ffffffaa 1px, transparent 1px);
   background-size:120px 120px,180px 180px,260px 260px;
   animation:snowFall 32s linear infinite;
-  opacity:.6;
+  opacity:.55;
   z-index:-3;
 }
 @keyframes snowFall{
@@ -86,7 +83,7 @@ body{
   to{background-position:0 1400px,0 1800px,0 2200px}
 }
 
-/* ===== PARTICLES (เดิม) ===== */
+/* ===== PARTICLES ===== */
 #particles{
   position:fixed;
   inset:0;
@@ -129,6 +126,7 @@ body{
   background:linear-gradient(135deg,#e6f6ff,#9bdcff);
   color:#000;
   font-size:12px;
+  font-weight:700;
 }
 #title{
   letter-spacing:2px;
@@ -158,6 +156,7 @@ main{
 /* ===== TITLE STYLE (WINTERFELL / AWAKE) ===== */
 .title-main,
 .title-sub{
+  font-weight:900;
   text-transform:uppercase;
   background:linear-gradient(
     90deg,
@@ -176,8 +175,8 @@ main{
 
 /* HOUSE OF */
 .title-main{
-  font-size:110px;
-  letter-spacing:8px;
+  font-size:108px;
+  letter-spacing:10px;
   line-height:1;
 }
 
@@ -185,7 +184,7 @@ main{
 .title-sub{
   margin-top:6px;
   font-size:120px;
-  letter-spacing:12px;
+  letter-spacing:14px;
   line-height:1;
 }
 
@@ -255,13 +254,13 @@ footer{
 
 <div class="topbar">
   <div class="brand">
-    <div class="badge">HOUSE OF DEK</div>
+    <div class="badge">HOUSE OF</div>
     <span id="title">DERNREANG 2K26</span>
   </div>
 </div>
 
 <main>
-  <div class="house-badge">HOUSE OF FRIENDSHIP</div>
+  <div class="house-badge">DRSTYLE</div>
 
   <div class="title-main">HOUSE OF</div>
   <div class="title-sub">DERNREANG</div>
