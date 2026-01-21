@@ -1,282 +1,316 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<title>DERNREANG 2K26</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>DERNREANG 2K26 | PREMIUM UI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;500&display=swap" rel="stylesheet">
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%}
+    <style>
+        :root {
+            --primary-glow: #00d2ff;
+            --secondary-glow: #9d50bb;
+            --bg-dark: #050505;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
 
-body{
-  background:#000;
-  color:#fff;
-  font-family:'Orbitron', Arial, Helvetica, sans-serif;
-  overflow:hidden;
-  text-align:center;
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
 
-/* ===== BACKGROUND ===== */
-#bg{
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle at center,#0000 45%,#000c 88%),
-    linear-gradient(to top,#3aa0ff20 0%,#0b1c2a55 10%,#000 35%);
-  z-index:-6;
-}
-#blueGlow{
-  position:fixed;
-  bottom:-22%;
-  left:0;right:0;
-  height:32%;
-  background:radial-gradient(circle at center,#5fd3ff44 0%,transparent 70%);
-  filter:blur(38px);
-  z-index:-5;
-}
-#grid{
-  position:fixed;
-  left:-50%;right:-50%;
-  bottom:-22%;
-  height:70%;
-  background:
-    linear-gradient(#ffffff10 1px, transparent 1px),
-    linear-gradient(90deg,#ffffff10 1px, transparent 1px);
-  background-size:60px 60px;
-  transform:perspective(800px) rotateX(70deg);
-  transform-origin:bottom center;
-  mask-image:linear-gradient(to top,transparent 0%,black 45%);
-  opacity:.75;
-  z-index:-4;
-}
+        /* ===== ANIMATED BACKGROUND ===== */
+        #canvas-stars {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
+        }
 
-/* ===== SNOW ===== */
-#snowCanvas{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:-3;
-}
+        .ambient-glow {
+            position: fixed;
+            width: 50vw; height: 50vw;
+            background: radial-gradient(circle, rgba(0, 210, 255, 0.07) 0%, transparent 70%);
+            top: -10%; right: -10%;
+            z-index: -1;
+            filter: blur(100px);
+            animation: floating 10s ease-in-out infinite alternate;
+        }
 
-/* ===== TOP BAR ===== */
-.topbar{
-  position:fixed;
-  top:18px;left:18px;right:18px;
-  height:68px;
-  border-radius:22px;
-  background:linear-gradient(to right,#ffffff14,#ffffff05,#ffffff14);
-  backdrop-filter:blur(18px);
-  border:1px solid #ffffff25;
-  z-index:10;
-}
-.brand{
-  height:100%;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding-left:20px;
-}
-.badge{
-  padding:6px 16px;
-  border-radius:999px;
-  background:#fff;
-  color:#000;
-  font-size:12px;
-  font-weight:700;
-}
-#title{font-size:14px;opacity:.8}
+        @keyframes floating {
+            from { transform: translate(0, 0); }
+            to { transform: translate(-5%, 10%); }
+        }
 
-/* ===== MAIN ===== */
-main{margin-top:180px;z-index:5;position:relative}
+        /* ===== NAVIGATION ===== */
+        .nav-container {
+            position: fixed;
+            top: 20px;
+            width: 90%;
+            max-width: 1200px;
+            padding: 15px 30px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
 
-/* ===== SINCE BADGE ===== */
-.house-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:14px;
-  padding:12px 30px;
-  border-radius:999px;
-  background:rgba(255,255,255,.08);
-  backdrop-filter:blur(14px);
-  border:1px solid rgba(255,255,255,.25);
-  font-size:12px;
-  letter-spacing:4px;
-  margin-bottom:36px;
-}
-.house-badge::before{
-  content:"";
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  background:#4fe8ff;
-  box-shadow:0 0 12px #4fe8ff,0 0 22px #4fe8ff;
-}
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-/* ===== WAVE TEXT ===== */
-.wave-text{
-  font-weight:900;
-  background:linear-gradient(120deg,#5fd3ff,#7b7cff,#b26bff,#5fd3ff);
-  background-size:300% 300%;
-  animation:wave 6s ease-in-out infinite;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  text-shadow:0 0 25px rgba(120,180,255,.45);
-}
-@keyframes wave{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
+        /* ===== MAIN CONTENT ===== */
+        main {
+            text-align: center;
+            z-index: 10;
+            padding: 20px;
+        }
 
-.title-main{font-size:108px;letter-spacing:10px}
-.title-sub{font-size:120px;letter-spacing:14px;margin-top:6px}
+        .badge-since {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 10px;
+            letter-spacing: 5px;
+            padding: 8px 20px;
+            border: 1px solid var(--primary-glow);
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 25px;
+            color: var(--primary-glow);
+            text-shadow: 0 0 10px var(--primary-glow);
+            box-shadow: inset 0 0 10px rgba(0, 210, 255, 0.2);
+            animation: pulse 2s infinite;
+        }
 
-.sub{
-  margin:26px 0 70px;
-  font-size:13px;
-  letter-spacing:3px;
-  opacity:.6;
-}
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
 
-/* ===== BUTTONS ===== */
-.buttons{
-  display:flex;
-  justify-content:center;
-  gap:42px;
-}
-.buttons a{
-  padding:23px 74px;
-  border-radius:999px;
-  letter-spacing:3px;
-  text-decoration:none;
-  border:1px solid #ffffff40;
-  background:linear-gradient(180deg,#ffffff18,#00000070);
-  backdrop-filter:blur(12px);
-  color:#fff;
-  font-weight:900;
-  transition:.35s;
-}
-.buttons a:hover{background:#fff;color:#000}
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
 
-/* ===== CONTACT / MUSIC ===== */
-.contact,.player{
-  position:fixed;
-  bottom:20px;
-  padding:14px 34px;
-  border-radius:999px;
-  font-weight:900;
-  letter-spacing:3px;
-  border:1px solid #ffffff40;
-  backdrop-filter:blur(12px);
-  color:#fff;
-  cursor:pointer;
-  z-index:20;
-}
-.contact{left:20px;text-decoration:none}
-.player{right:20px}
-.contact:hover,.player:hover{background:#fff;color:#000}
+        .hero-title span {
+            display: block;
+        }
 
-footer{
-  position:fixed;
-  bottom:6px;
-  width:100%;
-  font-size:10px;
-  opacity:.35;
-}
-</style>
+        .text-gradient {
+            background: linear-gradient(180deg, #fff 30%, rgba(255,255,255,0.2) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sub-text {
+            font-size: clamp(14px, 2vw, 18px);
+            color: #888;
+            letter-spacing: 8px;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            position: relative;
+            padding: 18px 45px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.4s;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn:hover {
+            border-color: #fff;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary {
+            background: #fff;
+            color: #000;
+        }
+
+        /* ===== CONTROLS ===== */
+        .bottom-ui {
+            position: fixed;
+            bottom: 30px;
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .control-item {
+            cursor: pointer;
+            padding: 12px 25px;
+            border-radius: 12px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .control-item:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 10px;
+            font-size: 9px;
+            color: #444;
+            letter-spacing: 1px;
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- ===== YOUTUBE (START MUTED) ===== -->
-<iframe id="yt"
-src="https://www.youtube.com/embed/bTfU8zFLj74?enablejsapi=1&mute=1&loop=1&playlist=bTfU8zFLj74&controls=0"
-allow="autoplay"
-style="display:none"></iframe>
+    <canvas id="canvas-stars"></canvas>
+    <div class="ambient-glow"></div>
 
-<canvas id="snowCanvas"></canvas>
-<div id="bg"></div>
-<div id="blueGlow"></div>
-<div id="grid"></div>
+    <iframe id="yt-player" 
+        src="https://www.youtube.com/embed/bTfU8zFLj74?enablejsapi=1&mute=1&loop=1&playlist=bTfU8zFLj74&controls=0" 
+        style="display:none">
+    </iframe>
 
-<div class="topbar">
-  <div class="brand">
-    <div class="badge">HOUSE OF</div>
-    <span id="title">DERNREANG 2K26</span>
-  </div>
-</div>
+    <nav class="nav-container">
+        <div class="logo">DERNREANG 2K26</div>
+        <div style="font-size: 10px; color: #666;">UI VERSION 4.0</div>
+    </nav>
 
-<main>
-  <div class="house-badge">SINCE 2K26</div>
-  <div class="wave-text title-main">HOUSE OF</div>
-  <div class="wave-text title-sub">DERNREANG</div>
-  <div class="sub">Listname Dernreang</div>
+    <main>
+        <div class="badge-since">SINCE 2026</div>
+        <h1 class="hero-title">
+            <span class="text-gradient">HOUSE OF</span>
+            <span style="color: #fff;">DERNREANG</span>
+        </h1>
+        <p class="sub-text">Digital Architecture</p>
 
-  <div class="buttons">
-    <a href="https://mylist-dernreang.netlify.app/" target="_blank">DERNREANG</a>
-    <a href="https://mylist-dernreang.netlify.app/" target="_blank">TESTE'D</a>
-  </div>
-</main>
+        <div class="btn-group">
+            <a href="https://mylist-dernreang.netlify.app/" target="_blank" class="btn btn-primary">ENTER PROJECT</a>
+            <a href="https://mylist-dernreang.netlify.app/" target="_blank" class="btn">PORTFOLIO</a>
+        </div>
+    </main>
 
-<a class="contact" href="https://www.facebook.com/ssssssz168" target="_blank">CONTACT</a>
-<div class="player" id="musicBtn">▶ PLAY MUSIC</div>
+    <div class="bottom-ui">
+        <a href="https://www.facebook.com/ssssssz168" target="_blank" class="control-item" style="text-decoration: none; color: inherit;">
+            CONTACT
+        </a>
+        <div class="control-item" id="play-toggle">▶ UNMUTE AUDIO</div>
+    </div>
 
-<footer>© 2026 DERNREANG. Created by Alex Dernreang.</footer>
+    <footer>DESIGNED BY ALEX DERNREANG © 2026</footer>
 
-<script>
-/* ===== MUSIC FIX (NETLIFY OK) ===== */
-const yt=document.getElementById("yt");
-const btn=document.getElementById("musicBtn");
-let playing=false;
+    <script>
+        // --- Interactive Background Script ---
+        const canvas = document.getElementById('canvas-stars');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        let mouse = { x: 0, y: 0 };
 
-btn.onclick=()=>{
-  if(!playing){
-    yt.src += "&autoplay=1";
-    yt.src = yt.src.replace("mute=1","mute=0");
-    btn.textContent="⏸ PAUSE MUSIC";
-    playing=true;
-  }else{
-    yt.src = yt.src.replace("mute=0","mute=1");
-    btn.textContent="▶ PLAY MUSIC";
-    playing=false;
-  }
-};
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            stars = [];
+            for(let i=0; i<200; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 1.5,
+                    speed: Math.random() * 0.5 + 0.1
+                });
+            }
+        }
 
-/* ===== SNOW ===== */
-const canvas=document.getElementById("snowCanvas");
-const ctx=canvas.getContext("2d");
-function resize(){canvas.width=innerWidth;canvas.height=innerHeight}
-window.onresize=resize;resize();
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#fff";
+            
+            stars.forEach(s => {
+                // Parallax effect
+                let offsetX = (mouse.x - canvas.width/2) * s.speed * 0.05;
+                let offsetY = (mouse.y - canvas.height/2) * s.speed * 0.05;
+                
+                ctx.beginPath();
+                ctx.arc(s.x + offsetX, s.y + offsetY, s.size, 0, Math.PI * 2);
+                ctx.fill();
 
-const snow=[...Array(160)].map(()=>({
-  x:Math.random()*canvas.width,
-  y:Math.random()*canvas.height,
-  r:Math.random()*2+1,
-  s:Math.random()*1+0.5,
-  d:Math.random()*1
-}));
+                s.y -= s.speed;
+                if(s.y < 0) s.y = canvas.height;
+            });
+            requestAnimationFrame(draw);
+        }
 
-setInterval(()=>{
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle="rgba(255,255,255,.8)";
-  ctx.beginPath();
-  snow.forEach(p=>{
-    ctx.moveTo(p.x,p.y);
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    p.y+=p.s;p.x+=Math.sin(p.d);
-    if(p.y>canvas.height){p.y=0;p.x=Math.random()*canvas.width}
-  });
-  ctx.fill();
-},33);
-</script>
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
 
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+        draw();
+
+        // --- Music Toggle Script ---
+        const yt = document.getElementById("yt-player");
+        const playBtn = document.getElementById("play-toggle");
+        let isPlaying = false;
+
+        playBtn.onclick = () => {
+            if(!isPlaying) {
+                yt.src = yt.src.replace("mute=1", "mute=0") + "&autoplay=1";
+                playBtn.textContent = "⏸ PAUSE AUDIO";
+                isPlaying = true;
+            } else {
+                yt.src = yt.src.replace("mute=0", "mute=1");
+                playBtn.textContent = "▶ RESUME AUDIO";
+                isPlaying = false;
+            }
+        };
+    </script>
 </body>
 </html>
-
-
-
